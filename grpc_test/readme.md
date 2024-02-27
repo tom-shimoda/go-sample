@@ -1,3 +1,5 @@
+参考元: https://zenn.dev/hsaki/books/golang-grpc-starting/viewer/intro
+
 ◆ protoのコンパイルを行うためには以下が必要となる
 ```
 sudo apt install protobuf-compiler
