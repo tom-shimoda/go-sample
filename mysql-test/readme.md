@@ -1,4 +1,4 @@
-1. /home/user/Docker/mysql にmysqlのcomposeファイルがあるので
+1. Docker/mysql にmysqlのcomposeファイルがあるので
 ```
 docker compose up -d mysql
 ```
