@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  db-main:
+    image: mariadb:10.7
+    container_name: db-main
+    environment:
+      TZ: 'Asia/Tokyo'
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
+    networks:
+      - phpmyadmin-link
+    restart: always
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin    
+    environment:
+      # 1を指定すると任意のサーバーへの接続が許可される
+      - PMA_ARBITRARY=1
+    tty: true
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+    networks:
+      - phpmyadmin-link
+    depends_on:
+      - db-main
+
+networks:
+  default:
+    external:
+      name: phpmyadmin
+  phpmyadmin-link:
+    external:
+      name: phpmyadmin
