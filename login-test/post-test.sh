@@ -9,6 +9,8 @@
 # ユーザー名、パスワード両方設定
 # curl -X POST http://localhost:8000/api/register --data '{"username":"tarou", "password":"passwd"}'
 # curl -X POST http://localhost:8000/api/register --data '{"username":"jirou", "password":"passwd"}'
+# curl -X POST http://localhost:8000/api/register --data '{"username":"Hanako", "password":"passwd"}'
+# curl -X POST http://localhost:8000/api/register --data '{"username":"hoge", "password":"12345678"}'
 
 
 # >>> Login
@@ -21,7 +23,9 @@
 #     -c: 改行やインデント無しのコンパクト形式で出力
 #     -r: 出力データの文字列のダブルクォーテーションを取り除く
 TOKEN=$(curl --silent -X POST http://localhost:8000/api/login --data '{"username":"tarou", "password":"passwd"}' | jq -rc .token)
-echo $TOKEN
+# TOKEN=$(curl --silent -X POST http://localhost:8000/api/login --data '{"username":"jirou", "password":"passwd"}' | jq -rc .token)
+# TOKEN=$(curl --silent -X POST http://localhost:8000/api/login --data '{"username":"HANAKO", "password":"passwd"}' | jq -rc .token)
+# echo $TOKEN
 
 # tokenを使わないアクセス
 # curl --silent -X GET http://localhost:8000/api/admin/user
